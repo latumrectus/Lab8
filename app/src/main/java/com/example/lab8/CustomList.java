@@ -26,11 +26,10 @@ public class CustomList extends ArrayAdapter<City> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-
         View view = convertView;
 
-        if(view == null){
-            view = LayoutInflater.from(context).inflate(R.layout.content, parent,false);
+        if (view == null) {
+            view = LayoutInflater.from(context).inflate(R.layout.content, parent, false);
         }
 
         City city = cities.get(position);
@@ -42,15 +41,54 @@ public class CustomList extends ArrayAdapter<City> {
         provinceName.setText(city.getProvinceName());
 
         return view;
-
     }
 
-    public int getCount(){
+    /**
+     * This gets the size of the list
+     * @return the number of cities in the list
+     */
+    @Override
+    public int getCount() {
         return cities.size();
     }
 
-    public void addCity(City city){
-
+    /**
+     * Adds a city object to the list if it does not already exist
+     * @param city the city to add
+     */
+    public void addCity(City city) {
+        if (!cities.contains(city)) {
+            cities.add(city);
+        }
     }
 
+    /**
+     * Checks if a city is in the list
+     * @param city the city to check
+     * @return true if the city exists in the list, false otherwise
+     */
+    public boolean hasCity(City city) {
+        return cities.contains(city);
+    }
+
+    /**
+     * Deletes a city from the list if it exists
+     * @param city the city to delete
+     * @throws Exception if the city is not found in the list
+     */
+    public void deleteCity(City city) throws Exception {
+        if (cities.contains(city)) {
+            cities.remove(city);
+        } else {
+            throw new Exception("City not found: " + city.getCityName());
+        }
+    }
+
+    /**
+     * Returns the number of cities in the list.
+     * @return the count of cities
+     */
+    public int countCity() {
+        return getCount();
+    }
 }
