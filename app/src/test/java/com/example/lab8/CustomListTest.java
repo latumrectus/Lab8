@@ -1,11 +1,11 @@
 package com.example.lab8;
 
-
 import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.junit.jupiter.api.Assertions.assertTrue;
+import static org.junit.jupiter.api.Assertions.assertFalse;
+import static org.junit.jupiter.api.Assertions.assertThrows;
 
-
-//import org.junit.Before;
-import org.junit.jupiter.api.BeforeAll;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -13,30 +13,82 @@ import java.util.ArrayList;
 public class CustomListTest {
 
     private CustomList list;
+
     /**
-     * create a mocklist for my citylist
-     * @return
+     * Creates a mock list for testing
+     * @return a new CustomList instance with an empty city list
      */
-    public CustomList MockCityList(){
-        list = new CustomList(null,new ArrayList<>());
+    public CustomList MockCityList() {
+        list = new CustomList(null, new ArrayList<>());
         return list;
     }
 
     /**
-     * get the size of the list
-     * increase the list by adding a new city
-     * check if our current size matches the initial size
-     plus one
+     * Test for addCity method: Adds a city to the list and checks if the list size increases by one
      */
-
     @Test
-    public void addCityTest(){
+    public void addCityTest() {
         list = MockCityList();
         int listSize = list.getCount();
         list.addCity(new City("Estevan", "SK"));
-        assertEquals(list.getCount(),listSize + 1);
+        assertEquals(list.getCount(), listSize + 1);
     }
 
+    /**
+     * Test for deleteCity method: Adds a city, then deletes it and checks if the size decreases.
+     * Also checks that an exception is thrown when attempting to delete a non-existent city.
+     */
+    @Test
+    public void deleteCityTest() throws Exception {
+        list = MockCityList();
+        City city = new City("Estevan", "SK");
+        list.addCity(city);
 
+        // Verify deletion
+        int listSize = list.getCount();
+        list.deleteCity(city);
+        assertEquals(list.getCount(), listSize - 1);
 
+        // Verify exception is thrown if city not in list
+        Exception exception = assertThrows(Exception.class, () -> {
+            list.deleteCity(city);
+        });
+        assertEquals("City not found: " + city.getCityName(), exception.getMessage());
+    }
+
+    /**
+     * Test for hasCity method: Checks if a city exists in the list after adding it,
+     * and verifies it returns false for a city not in the list.
+     */
+    @Test
+    public void hasCityTest() {
+        list = MockCityList();
+        City city = new City("Estevan", "SK");
+
+        // Initially should not contain city
+        assertFalse(list.hasCity(city));
+
+        // After adding, should contain city
+        list.addCity(city);
+        assertTrue(list.hasCity(city));
+    }
+
+    /**
+     * Test for countCity method: Checks if countCity returns the correct number of cities.
+     */
+    @Test
+    public void countCityTest() {
+        list = MockCityList();
+
+        // Initially empty list should have count 0
+        assertEquals(0, list.countCity());
+
+        // Add a city and check count
+        list.addCity(new City("Estevan", "SK"));
+        assertEquals(1, list.countCity());
+
+        // Add another city and check count
+        list.addCity(new City("Regina", "SK"));
+        assertEquals(2, list.countCity());
+    }
 }
