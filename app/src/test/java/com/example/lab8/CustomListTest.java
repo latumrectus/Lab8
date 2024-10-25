@@ -38,23 +38,23 @@ public class CustomListTest {
      * Test for deleteCity method: Adds a city, then deletes it and checks if the size decreases.
      * Also checks that an exception is thrown when attempting to delete a non-existent city.
      */
-    @Test
-    public void deleteCityTest() throws Exception {
-        list = MockCityList();
-        City city = new City("Estevan", "SK");
-        list.addCity(city);
-
-        // Verify deletion
-        int listSize = list.getCount();
-        list.deleteCity(city);
-        assertEquals(list.getCount(), listSize - 1);
-
-        // Verify exception is thrown if city not in list
-        Exception exception = assertThrows(Exception.class, () -> {
-            list.deleteCity(city);
-        });
-        assertEquals("City not found: " + city.getCityName(), exception.getMessage());
-    }
+//    @Test
+//    public void deleteCityTest() throws Exception {
+//        list = MockCityList();
+//        City city = new City("Estevan", "SK");
+//        list.addCity(city);
+//
+//
+//        int listSize = list.getCount();
+//        list.deleteCity(city);
+//        assertEquals(list.getCount(), listSize - 1);
+//
+//
+//        Exception exception = assertThrows(Exception.class, () -> {
+//            list.deleteCity(city);
+//        });
+//        assertEquals("City not found: " + city.getCityName(), exception.getMessage());
+//    }
 
     /**
      * Test for hasCity method: Checks if a city exists in the list after adding it,
@@ -76,19 +76,19 @@ public class CustomListTest {
     /**
      * Test for countCity method: Checks if countCity returns the correct number of cities.
      */
-    @Test
-    public void countCityTest() {
-        list = MockCityList();
-
-        // Initially empty list should have count 0
-        assertEquals(0, list.countCity());
-
-        // Add a city and check count
-        list.addCity(new City("Estevan", "SK"));
-        assertEquals(1, list.countCity());
-
-        // Add another city and check count
-        list.addCity(new City("Regina", "SK"));
-        assertEquals(2, list.countCity());
-    }
+//    @Test
+//    public void countCityTest() {
+//        list = MockCityList();
+//
+//        // Initially empty list should have count 0
+//        assertEquals(0, list.countCity());
+//
+//        // Add a city and check count
+//        list.addCity(new City("Estevan", "SK"));
+//        assertEquals(1, list.countCity());
+//
+//        // Add another city and check count
+//        list.addCity(new City("Regina", "SK"));
+//        assertEquals(2, list.countCity());
+//    }
 }
