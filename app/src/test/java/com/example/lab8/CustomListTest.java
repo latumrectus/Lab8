@@ -38,23 +38,23 @@ public class CustomListTest {
      * Test for deleteCity method: Adds a city, then deletes it and checks if the size decreases.
      * Also checks that an exception is thrown when attempting to delete a non-existent city.
      */
-//    @Test
-//    public void deleteCityTest() throws Exception {
-//        list = MockCityList();
-//        City city = new City("Estevan", "SK");
-//        list.addCity(city);
-//
-//
-//        int listSize = list.getCount();
-//        list.deleteCity(city);
-//        assertEquals(list.getCount(), listSize - 1);
-//
-//
-//        Exception exception = assertThrows(Exception.class, () -> {
-//            list.deleteCity(city);
-//        });
-//        assertEquals("City not found: " + city.getCityName(), exception.getMessage());
-//    }
+    @Test
+    public void deleteCityTest() throws Exception {
+        list = MockCityList();
+        City city = new City("Estevan", "SK");
+        list.addCity(city);
+
+
+        int listSize = list.getCount();
+        list.deleteCity(city);
+        assertEquals(list.getCount(), listSize - 1);
+
+
+        Exception exception = assertThrows(Exception.class, () -> {
+            list.deleteCity(city);
+        });
+        assertEquals("City not found: " + city.getCityName(), exception.getMessage());
+    }
 
     /**
      * Test for hasCity method: Checks if a city exists in the list after adding it,
