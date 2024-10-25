@@ -76,19 +76,19 @@ public class CustomListTest {
     /**
      * Test for countCity method: Checks if countCity returns the correct number of cities.
      */
-//    @Test
-//    public void countCityTest() {
-//        list = MockCityList();
-//
-//        // Initially empty list should have count 0
-//        assertEquals(0, list.countCity());
-//
-//        // Add a city and check count
-//        list.addCity(new City("Estevan", "SK"));
-//        assertEquals(1, list.countCity());
-//
-//        // Add another city and check count
-//        list.addCity(new City("Regina", "SK"));
-//        assertEquals(2, list.countCity());
-//    }
+    @Test
+    public void countCityTest() {
+        list = MockCityList();
+
+        // Initially empty list should have count 0
+        assertEquals(0, list.countCity());
+
+        // Add a city and check count
+        list.addCity(new City("Estevan", "SK"));
+        assertEquals(1, list.countCity());
+
+        // Add another city and check count
+        list.addCity(new City("Regina", "SK"));
+        assertEquals(2, list.countCity());
+    }
 }
